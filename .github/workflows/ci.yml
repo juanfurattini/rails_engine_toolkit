@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  rspec:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby: ["3.2", "3.3"]
+        rails: ["8.1.2"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
+      - run: bundle install
+      - run: bundle exec rspec
+      - run: bundle exec rubocop
+
+  host-app-smoke:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby: ["3.2", "3.3"]
+        rails: ["8.1.2"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+      - run: gem install rails -v ${{ matrix.rails }}
+      - run: bundle install
+      - run: |
+          cp -R test/fixtures/host_app /tmp/host_app
+          cd /tmp/host_app
+          bundle config set local.rails_engine_toolkit "$GITHUB_WORKSPACE"
+          bundle install
+          bundle exec rails generate engine_toolkit:install <<'EOF'
+
+
+
+
+
+
+EOF
+          bundle exec engine-toolkit new_engine auth <<'EOF'
+
+EOF

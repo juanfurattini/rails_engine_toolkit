@@ -1,0 +1,51 @@
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 3.2
+  Exclude:
+    - "test/fixtures/**/*"
+
+Metrics/ClassLength:
+  Max: 120
+
+Layout/LineLength:
+  Max: 120
+  Exclude:
+    - "rails_engine_toolkit.gemspec"
+
+Metrics/MethodLength:
+  Max: 35
+  Exclude:
+    - "lib/rails_engine_toolkit/actions/**/*"
+    - "lib/rails_engine_toolkit/generators/**/*"
+
+Metrics/AbcSize:
+  Max: 25
+  Exclude:
+    - "lib/rails_engine_toolkit/actions/**/*"
+    - "lib/rails_engine_toolkit/generators/**/*"
+
+Metrics/CyclomaticComplexity:
+  Max: 10
+  Exclude:
+    - "lib/rails_engine_toolkit/actions/**/*"
+    - "lib/rails_engine_toolkit/generators/**/*"
+
+Metrics/PerceivedComplexity:
+  Max: 12
+  Exclude:
+    - "lib/rails_engine_toolkit/actions/**/*"
+    - "lib/rails_engine_toolkit/generators/**/*"
+
+Metrics/BlockLength:
+  Exclude:
+    - "spec/**/*.rb"
+    - "*.gemspec"
+
+Style/Documentation:
+  Enabled: false
+
+Naming/PredicateMethod:
+  Exclude:
+    - "lib/rails_engine_toolkit/config.rb"
+    - "lib/rails_engine_toolkit/project.rb"
+    - "lib/rails_engine_toolkit/routes_rewriter.rb"

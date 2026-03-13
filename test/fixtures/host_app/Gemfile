@@ -1,0 +1,5 @@
+source "https://rubygems.org"
+
+gem "rails", ">= 8.1.2"
+gem "sqlite3"
+gem "rails_engine_toolkit"

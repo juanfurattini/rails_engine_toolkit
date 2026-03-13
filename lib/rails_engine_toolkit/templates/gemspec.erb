@@ -1,0 +1,25 @@
+require_relative "lib/<%= engine_name %>/version"
+
+Gem::Specification.new do |spec|
+  spec.name        = "<%= engine_name %>"
+  spec.version     = <%= engine_class %>::VERSION
+  spec.authors     = ["<%= author_name %>"]
+  spec.email       = ["<%= author_email %>"]
+  spec.summary     = "<%= summary %>"
+  spec.description = "<%= description %>"
+
+  spec.homepage    = "<%= project_url %>"
+  spec.license     = "<%= license %>"
+
+  spec.required_ruby_version = "<%= ruby_version %>"
+
+  spec.metadata["homepage_uri"]     = spec.homepage
+  spec.metadata["source_code_uri"]  = "<%= project_url %>"
+  spec.metadata["changelog_uri"]    = "<%= project_url %>"
+
+  spec.files = Dir.chdir(File.expand_path(__dir__)) do
+    Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
+  end
+
+  spec.add_dependency "rails", "<%= rails_version %>"
+end

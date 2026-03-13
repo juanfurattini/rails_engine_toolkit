@@ -1,0 +1,37 @@
+# <%= engine_class %>
+
+## Purpose
+<%= description %>
+
+## Responsibilities
+- Describe the main responsibilities of this bounded context.
+
+## Owned tables
+- None defined yet.
+
+## Public endpoints
+- None defined yet.
+
+## Integration points
+- None defined yet.
+
+## Dependencies
+- Rails
+- PostgreSQL
+
+## Commands
+
+### Generate a model
+```bash
+bundle exec engine-toolkit new_engine_model <%= engine_name %> example_entity name:string
+```
+
+### Generate a migration
+```bash
+bundle exec engine-toolkit new_engine_migration <%= engine_name %> CreateExampleEntities
+```
+
+### Update owned tables
+```bash
+bundle exec engine-toolkit update_engine_readme <%= engine_name %>
+```

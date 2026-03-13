@@ -1,0 +1,35 @@
+project:
+  name: "<%= project_name %>"
+  slug: "<%= project_slug %>"
+  url: "<%= project_url %>"
+
+author:
+  name: "<%= author_name %>"
+  email: "<%= author_email %>"
+
+defaults:
+  database: "<%= database %>"
+  api_only: <%= api_only %>
+  skip_asset_pipeline: <%= skip_asset_pipeline %>
+  skip_action_mailbox: true
+  skip_action_text: true
+  skip_active_storage: true
+  skip_hotwire: true
+  skip_jbuilder: true
+  skip_system_test: true
+  mount_routes: <%= mount_routes %>
+  create_ddd_structure: <%= create_ddd_structure %>
+
+metadata:
+  license: "MIT"
+  ruby_version: ">= 3.2"
+  rails_version: ">= 8.1.2"
+
+ddd:
+  folders:
+    - app/use_cases
+    - app/services
+    - app/policies
+    - app/serializers
+    - app/repositories
+    - app/contracts
