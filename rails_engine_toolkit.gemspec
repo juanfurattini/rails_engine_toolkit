@@ -5,13 +5,13 @@ require_relative 'lib/rails_engine_toolkit/version'
 Gem::Specification.new do |spec|
   spec.name          = 'rails_engine_toolkit'
   spec.version       = RailsEngineToolkit::VERSION
-  spec.authors       = ['Your Name']
-  spec.email         = ['you@example.com']
+  spec.authors       = ['Juan Furattini']
+  spec.email         = ['juan.furattini@gmail.com']
 
   spec.summary       = 'Reusable CLI and generators for Rails engines'
   spec.description   =
     'Creates and manages internal Rails engines with configurable conventions, safe file mutations, parser-assisted route inspection, engine-specific migration installation, and Rails install generators.'
-  spec.homepage      = 'https://github.com/your-org/rails_engine_toolkit'
+  spec.homepage      = 'https://github.com/juanfurattini/rails_engine_toolkit'
   spec.license       = 'MIT'
   spec.required_ruby_version = '>= 3.2'
 
