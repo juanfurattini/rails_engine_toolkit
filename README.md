@@ -71,7 +71,7 @@ bundle exec rubocop
 
 ```bash
 gem build rails_engine_toolkit.gemspec
-gem push rails_engine_toolkit-0.6.3.gem
+gem push rails_engine_toolkit-0.6.4.gem
 ```
 
 After it is published, consumers can install it with:
