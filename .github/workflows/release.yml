@@ -6,17 +6,27 @@ on:
       - "v*"
 
 jobs:
-  publish:
+  push:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
+      id-token: write
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: ruby/setup-ruby@v1
+      - uses: actions/checkout@v5
         with:
-          ruby-version: "3.3"
+          persist-credentials: false
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2"
           bundler-cache: true
-      - run: gem build rails_engine_toolkit.gemspec
-      - run: gem push *.gem
-        env:
-          RUBYGEMS_API_KEY: ${{ secrets.RUBYGEMS_API_KEY }}
+
+      - name: Run test suite
+        run: bundle exec rspec
+
+      - name: Run RuboCop
+        run: bundle exec rubocop
+
+      - uses: rubygems/release-gem@v1
