@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    rails_engine_toolkit (0.6.3)
+    rails_engine_toolkit (0.6.4)
       railties (>= 8.1.0)
       thor (>= 1.3)
 
