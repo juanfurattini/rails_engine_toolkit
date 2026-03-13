@@ -29,4 +29,5 @@ jobs:
       - name: Run RuboCop
         run: bundle exec rubocop
 
-      - uses: rubygems/release-gem@v1
+      - name: Publish gem
+        uses: rubygems/release-gem@v1
