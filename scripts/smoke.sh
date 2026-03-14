@@ -24,15 +24,15 @@ exit(ok ? 0 : 1)
   exit 1
 }
 
-# TOOLKIT_PATH="$(pwd)"
-# HOST_APP_TMP="/tmp/host_app"
-
-# echo "➡️ Toolkit path: $TOOLKIT_PATH"
-# echo "➡️ Host app tmp: $HOST_APP_TMP"
-
 TOOLKIT_PATH="${GITHUB_WORKSPACE:-$(pwd)}"
-TMP_ROOT="$TOOLKIT_PATH/tmp"
-HOST_APP="$TMP_ROOT/host_app"
+SMOKE_TMP_ROOT="$TOOLKIT_PATH/smoke/tmp"
+HOST_APP="$SMOKE_TMP_ROOT/host_app"
+
+cleanup_smoke_tmp_root_dir() {
+  if [ "${KEEP_SMOKE_TMP:-false}" != "true" ]; then
+    rm -rf "$SMOKE_TMP_ROOT"
+  fi
+}
 
 cleanup_host_app_dir() {
   if [ "${KEEP_SMOKE_TMP:-false}" != "true" ]; then
@@ -53,6 +53,7 @@ show_script_result() {
 cleanup_trap() {
   echo "🧹 Cleaning..."
   cleanup_host_app_dir
+  cleanup_smoke_tmp_root_dir
   show_script_result
 }
 
@@ -61,10 +62,10 @@ trap cleanup_trap EXIT
 echo "Preparing tmp workspace..."
 
 echo "Ensuring tmp root exists..."
-mkdir -p "$TMP_ROOT"
+mkdir -p "$SMOKE_TMP_ROOT"
 
 echo "➡️ Toolkit path: $TOOLKIT_PATH"
-echo "➡️ Tmp root: $TMP_ROOT"
+echo "➡️ Smoke tmp root: $SMOKE_TMP_ROOT"
 echo "➡️ Host app: $HOST_APP"
 
 echo "🧹 Cleaning previous tmp host app..."
