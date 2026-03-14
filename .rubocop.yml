@@ -5,8 +5,10 @@ AllCops:
   TargetRubyVersion: 3.2
   SuggestExtensions: false
   Exclude:
+    - "tmp/**/*"
     - "test/fixtures/**/*"
-    - 'tmp/**/*'
+    - "vendor/**/*"
+    - "coverage/**/*"
 
 Metrics/ClassLength:
   Max: 120
