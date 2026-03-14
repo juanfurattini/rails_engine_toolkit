@@ -1,0 +1,35 @@
+project:
+  name: "Host App"
+  slug: "host_app"
+  url: "https://example.test/host_app"
+
+author:
+  name: "CI"
+  email: "ci@example.test"
+
+defaults:
+  database: "sqlite3"
+  api_only: true
+  skip_asset_pipeline: true
+  skip_action_mailbox: true
+  skip_action_text: true
+  skip_active_storage: true
+  skip_hotwire: true
+  skip_jbuilder: true
+  skip_system_test: true
+  mount_routes: true
+  create_ddd_structure: true
+
+metadata:
+  license: "MIT"
+  ruby_version: ">= 3.2"
+  rails_version: ">= 8.1.2"
+
+ddd:
+  folders:
+    - app/use_cases
+    - app/services
+    - app/policies
+    - app/serializers
+    - app/repositories
+    - app/contracts
