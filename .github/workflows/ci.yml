@@ -27,16 +27,8 @@ jobs:
       - name: Run RSpec
         run: bundle exec rspec
 
-      # - name: Run RuboCop
-      #   run: bundle exec rubocop --cache false
-
       - name: Run RuboCop
         run: bundle exec rubocop --cache false lib spec test scripts rails_engine_toolkit.gemspec
-
-      # - name: Debug RuboCop config sources
-      #   run: |
-      #     find . -name ".rubocop*.yml" -o -name "rubocop.yml" | sort
-      #     bundle exec rubocop --debug --cache false
 
       - name: Run Smoke Test (fast)
         run: bash scripts/smoke.sh
