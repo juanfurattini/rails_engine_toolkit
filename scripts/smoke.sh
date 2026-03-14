@@ -6,6 +6,8 @@ echo "=========================================="
 echo "Rails Engine Toolkit - Local Smoke Test"
 echo "=========================================="
 
+SUCCESS=false
+
 echo "🧪 Active Ruby:"
 ruby -v
 which ruby
@@ -32,9 +34,33 @@ TOOLKIT_PATH="${GITHUB_WORKSPACE:-$(pwd)}"
 TMP_ROOT="$TOOLKIT_PATH/tmp"
 HOST_APP="$TMP_ROOT/host_app"
 
+cleanup_host_app_dir() {
+  if [ "${KEEP_SMOKE_TMP:-false}" != "true" ]; then
+    rm -rf "$HOST_APP"
+  fi
+}
+
+show_script_result() {
+  if [ "$SUCCESS" = true ]; then
+    echo "=========================================="
+    echo "✅ Smoke test completed successfully"
+    echo "=========================================="
+  else
+    echo "❌ Smoke test failed"
+  fi
+}
+
+cleanup_trap() {
+  echo "🧹 Cleaning..."
+  cleanup_host_app_dir
+  show_script_result
+}
+
+trap cleanup_trap EXIT
+
 echo "Preparing tmp workspace..."
 
-rm -rf "$HOST_APP"
+echo "Ensuring tmp root exists..."
 mkdir -p "$TMP_ROOT"
 
 echo "➡️ Toolkit path: $TOOLKIT_PATH"
@@ -42,7 +68,7 @@ echo "➡️ Tmp root: $TMP_ROOT"
 echo "➡️ Host app: $HOST_APP"
 
 echo "🧹 Cleaning previous tmp host app..."
-rm -rf "$HOST_APP"
+cleanup_host_app_dir
 
 echo "📦 Copying fixture host app..."
 cp -R test/fixtures/host_app "$HOST_APP"
@@ -101,6 +127,4 @@ bundle exec engine-toolkit new_engine_migration auth create_test_table
 echo "➡️ Updating README..."
 bundle exec engine-toolkit update_engine_readme auth
 
-echo "=========================================="
-echo "✅ Smoke test completed successfully"
-echo "=========================================="
+SUCCESS=true
