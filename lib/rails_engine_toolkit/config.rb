@@ -21,7 +21,8 @@ module RailsEngineToolkit
       'skip_active_storage' => '--skip-active-storage',
       'skip_hotwire' => '--skip-hotwire',
       'skip_jbuilder' => '--skip-jbuilder',
-      'skip_system_test' => '--skip-system-test'
+      'skip_system_test' => '--skip-system-test',
+      "skip_rubocop" => "--skip-rubocop"
     }.freeze
 
     attr_reader :data
